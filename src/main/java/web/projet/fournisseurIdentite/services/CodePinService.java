@@ -37,14 +37,7 @@ public class CodePinService {
         EmailConfig config = new EmailConfig("smtp.gmail.com", 587, "rarianamiadana@gmail.com", "mgxypljhfsktzlbk");
         String destinataire = utilisateur.getEmail();
         String message = "Code Pin de Confirmation";
-        String htmlContent = """
-            <p>Bonjour %s %s,</p>
-            <p>Votre code PIN de confirmation est :</p>
-            <h2>%d</h2>
-            <p>Ce code est valable pour les 90 prochaines secondes.</p>
-            <p>Merci,</p>
-            <p>L'équipe de Fournisseur Identité.</p>
-        """.formatted(utilisateur.getPrenom(), utilisateur.getNom(), code);
+        String htmlContent = "<p>Bonjour %s %s,</p> <p>Votre code PIN de confirmation est :</p><h2>%d</h2><p>Ce code est valable pour les 90 prochaines secondes.</p><p>Merci,</p><p>L'équipe de Fournisseur Identité.</p>".formatted(utilisateur.getPrenom(), utilisateur.getNom(), code);
         EmailService emailService = new EmailService(config);
         try {
             emailService.sendEmail(destinataire, message, htmlContent);
